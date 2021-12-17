@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- For using Vue development version we do the following::::-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        
+    </head>
+    <body>
+        <!--1.  we identify the div as the variable name used in the vue script (app) and
+        we input the data inserted in the script with double brackets {{}}-->
+        <div id="app">
+            {{ message }}
+        </div>
+        </br>
+        
+        <!-- 2. Let´s create a new vue app to use bind. v-bind is a directive
+        Directives are prefixed with v- from Vue, they apply special behaviour
+        v-bind makes this div´s title stay as the message inserted in the vue script-->
+        <div id="app2">
+            <span v-bind:title="message">
+                Hover your mouse over me for a few seconds 
+                to see my dynamically bound title!
+            </span>
+        </div>
+        </br>
+
+        <!-- 3. Let´s do some basic conditionals now with v-if and v-else, we can 
+            test this by changing the value of seen in app3 in the script.
+            Useful technique for using vue in a group of elements is by wrapping them 
+            in a <template> tag (invisible wrapper)
+            v-else-if also exists -->
+        <div id="app3">
+            <span v-if="seen"> Now you see me! </span>
+            <span v-else> I´m invisible!</span>
+        </div>
+        <br/>
+        
+        <!-- 4. Let´s test a for loop  to display an array data now!-->
+        <div id="app4">
+            <ol>
+                <li v-for="item in array">
+                    {{ item.text }}
+                </li>
+            </ol>
+        </div>
+
+        <!-- 5. Handling user input with Vue. We attach event listeners with v-on-->
+        <div id="app5">
+            <p> {{message}} </p>
+            <button v-on:click="reverseMessage"> Invert</button>
+        </div>
+    
+        <!-- Scripts, usually on another file called index or functions or x.js-->
+        <script>
+            var app = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue!'
+                }
+            })
+        
+            var app2 = new Vue({
+                el: '#app2',
+                data: {
+                    message: 'You loaded this page on '+ new Date().toLocaleString()
+                }
+            })
+       
+            var app3 = new Vue({
+                el:'#app3',
+                data: {
+                    seen: true
+                }
+            })
+            
+            // Arrays in Vue are declared in data with [], then each value with {}
+            var app4 = new Vue({
+                el: '#app4',
+                data: {
+                    array: [
+                        {text: 'Learn JavaScript!'},
+                        {text: 'Learn Vue!'},
+                        {text: 'Do something awesome!'}
+                    ]
+                }
+            })
+
+            // Doing methods for events in Vue!!
+            var app5 = new Vue({
+                el:'#app5',
+                data: {
+                    message: 'Invert me, I dare you!'
+                },
+                methods: {
+                    reverseMessage: function(){
+                        if(this.message == 'Invert me, I dare you!'){
+                            let newMsg = "No, bring me back!"
+                            this.message = newMsg.split('').reverse().join('')
+                        }else{
+                            this.message = 'Thank you!'
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
