@@ -31,7 +31,7 @@
             v-else-if also exists -->
         <div id="app3">
             <span v-if="seen"> Now you see me! </span>
-            <span v-else> I´m invisible!</span>
+            <span v-else> I'm invisible!</span>
         </div>
         <br/>
         
@@ -49,7 +49,19 @@
             <p> {{message}} </p>
             <button v-on:click="reverseMessage"> Invert</button>
         </div>
-    
+        
+        <!-- 6. v-model directive for two-way binding between form input and app state -->
+        
+        <div id="app6">
+            <p> {{message}} </p>
+            <input v-model="message" />
+        </div>
+        
+
+        <!-- 7. Component system. A component in vue is basically an instance with predefined 
+                options. And we create a component like we did with app objects.
+        ******** THIS IS ALL DONE IN THE SCRIPT, GO TO app7 for more info-->
+
         <!-- Scripts, usually on another file called index or functions or x.js-->
         <script>
             var app = new Vue({
@@ -85,7 +97,7 @@
                 }
             })
 
-            // Doing methods for events in Vue!!
+            // Doing methods for events in Vue. onclick example !!
             var app5 = new Vue({
                 el:'#app5',
                 data: {
@@ -102,6 +114,31 @@
                     }
                 }
             })
+
+            // We can also create vue apps this way, using vue.createApp(app).mount("#id"). This doesn´t work in
+            // version 2.6 though, so I won´t use it in this file 
+            const app6 = new Vue({
+                el:'#app6',
+                data() {
+                    return {
+                        message: 'Hello Vue!'
+                    }
+                }
+            })
+
+            // //  APP 7::: creating a component
+
+            // Vue.component('todo-item' , {
+            //     template: '<li>This is a todo</li>'
+            // })
+            //     // Creating the app
+            // const app7 = new Vue({
+            //     components: {
+            //         TodoItem     // Registering a new component 
+            //     },
+            //     ...              //Other component properties
+            // })
+            // app7.mount(...)
         </script>
     </body>
 </html>
