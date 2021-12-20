@@ -4,5 +4,5 @@ till the very end. <br/>
 Smaller introductory files will have several concepts with several apps and will have  the Vue script inside the same file. </p>
 <h2>Links used: </h2>
 <ol>
-  <li> https://vuejs.org/v2/guide/ </li>
+  <li> https://v3.vuejs.org/guide/introduction.html#what-is-vue-js </li>
 </ol>
