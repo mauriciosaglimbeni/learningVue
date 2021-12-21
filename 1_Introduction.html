@@ -60,8 +60,24 @@
 
         <!-- 7. Component system. A component in vue is basically an instance with predefined 
                 options. And we create a component like we did with app objects.
-        ******** THIS IS ALL DONE IN THE SCRIPT, GO TO app7 for more info-->
-
+                Props are custom attributes that we can add to components.
+            -->
+        <div id="app-7">
+            <ol>
+                <!--
+                    Now we provide each todo-item with the todo object
+                    it's representing, so that its content can be dynamic.
+                    We also need to provide each component with a "key",
+                    which will be explained later.
+                -->
+                <todo-item
+                    v-for="item in groceryList"
+                    v-bind:todo="item"
+                    v-bind:key="item.id"
+                ></todo-item>
+            </ol>
+        </div>
+            
         <!-- Scripts, usually on another file called index or functions or x.js-->
         <script>
             var app = new Vue({
@@ -128,17 +144,21 @@
 
             // //  APP 7::: creating a component
 
-            // Vue.component('todo-item' , {
-            //     template: '<li>This is a todo</li>'
-            // })
-            //     // Creating the app
-            // const app7 = new Vue({
-            //     components: {
-            //         TodoItem     // Registering a new component 
-            //     },
-            //     ...              //Other component properties
-            // })
-            // app7.mount(...)
+            Vue.component('todo-item', {
+                props: ['todo'],
+                template: '<li>{{ todo.text }}</li>'
+            })
+
+            var app7 = new Vue({
+                el: '#app-7',
+                data: {
+                    groceryList: [
+                    { id: 0, text: 'Vegetables' },
+                    { id: 1, text: 'Cheese' },
+                    { id: 2, text: 'Whatever else humans are supposed to eat' }
+                    ]
+                }
+            })
         </script>
     </body>
 </html>
