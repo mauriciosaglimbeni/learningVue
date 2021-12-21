@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- For using Vue development version we do the following::::-->
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    </head>
+    <body>
+
+        <!-- 1- Object.freeze() example, if you delete line 40 foo will change.-->
+        <div id="app">
+            <p> {{foo}}</p>
+            <!-- this button won´t be able to update foo because od the freeze-->
+            <button v-on:click="foo = 'No, you managed to change me!'" > Try changing it!</button>
+        </div>
+
+        <!-- 2- Vue instances properties and methods with $ -->
+
+
+
+        <!-- Scripts, usually on another file called index or functions or x.js-->
+        <script>
+            /* To start a Vue app  we first create the Vue instance. Often
+                with the variable named vm, we then pass the options (like data, for example) */ 
+            
+                // This is our data object
+            var data = { a:1}
+                // We add the object to our Vue instance
+            var vm = new Vue({
+                data : data
+            })
+                // Getting the instance property
+            vm.a == data.a // => true
+                // Setting the property on the instance also affects the original data and vice-versa
+            vm.a = 2
+            data.a // ==> 2
+            
+            data.a = 3
+            vm.a // ==> 3
+
+                // We can use Object.freeze() to prevent properties from changing
+            var obj = {
+                foo : 'Try changing me nerd!'
+            }
+            Object.freeze(obj)
+
+            new Vue({
+                el: '#app',
+                data: obj
+            })
+
+                // Vue also has a lot of instance properties and methods 
+                // prefixed with $ to differentiate them from user-defined
+
+            var data2 = {a:1}
+            var vm = new Vue({
+                el:'#example',
+                data: data
+            })
+
+            vm.$data === data // => true
+            vm.$el === document.getElementById('example') // ==> true
+
+                //   $watch is an instance method
+            
+            vm.$watch('a', function(newValue, oldValue) {
+                // This will be called when vm.a changes
+            })
+        </script>
+    </body>
+</html>
