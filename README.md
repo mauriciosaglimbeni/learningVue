@@ -5,4 +5,5 @@ Smaller introductory files will have several concepts with several apps and will
 <h2>Links used: </h2>
 <ol>
   <li> https://v3.vuejs.org/guide/introduction.html#what-is-vue-js </li>
+  <li> https://vuejs.org/v2/api/#Instance-Properties -- API for instance properties and methods</li>
 </ol>
