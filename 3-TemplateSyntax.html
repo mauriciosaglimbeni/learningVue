@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- For using Vue development version we do the following::::-->
+        <script src="https://unpkg.com/vue@next"></script>
+        <style>
+            .demo {
+            font-family: sans-serif;
+            border: 1px solid #eee;
+            border-radius: 2px;
+            padding: 20px 30px;
+            margin-top: 1em;
+            margin-bottom: 40px;
+            user-select: none;
+            overflow-x: auto;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- INTERPOLATIONS:
+        1- Text data binding -->
+        <div id="example1" class="demo">
+            <span> Message : {{ msg }}</span>
+            <span v-once> This will never change : {{ msg2 }}</span> <!-- This one will never change with the v-once directive-->
+        </div>
+        <!--
+        2- Raw HTML binding-->
+        <div id="example2" class="demo">
+        <p> To output rawHtml we use the v-html directive: <span v-html="rawHtml"></span></p>
+       </div> 
+        <!--
+        3- Attributes
+        to bind inside html attributes we must use a v-bind directive.
+        the button is an example of a boolean attribute
+        -->
+        <div v-bind:id="dynamicId"></div>
+        <button v-bind:disabled="isButtonDisabled"> Button</button>
+
+        <!-- you can also interpolate JS inside data bindings.-->
+        <!--  DIRECTIVES
+
+        -->
+        
+       <!-- JS SCRIPTS-->
+        <script>
+            const dataBindingApp = {
+                data(){
+                    msg : 'Hello'
+                    msg2: "World!"
+                }
+            }
+            Vue.createApp(dataBindingApp).mount('#example1');
+            const renderHtmlApp = {
+                data(){
+                    return {
+                        rawHtml: '<span style="color: red">This should be red.</span>'
+                    }
+                }
+            }
+            Vue.createApp(renderHtmlApp).mount('#example2')
+        </script>
+    </body>
+</html>
